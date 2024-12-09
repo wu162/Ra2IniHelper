@@ -10,9 +10,64 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="com.github.wu162.ra2inihelper.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+
+        <fileType
+                name="INI File"
+                implementationClass="com.github.wu162.ra2inihelper.lang.IniFileType"
+                fieldName="INSTANCE"
+                language="INI"
+                extensions="ini"/>
+
+        <lang.parserDefinition
+                language="INI"
+                implementationClass="com.github.wu162.ra2inihelper.lang.IniParserDefinition"/>
+
+        <lang.syntaxHighlighterFactory
+                language="INI"
+                implementationClass="com.github.wu162.ra2inihelper.lang.IniSyntaxHighlighterFactory"/>
+
+        <!--        <documentationProvider implementation="com.github.wu162.ra2inihelper.lang.IniDocumentationProvider"/>-->
+        <lang.documentationProvider
+                language="INI"
+                implementationClass="com.github.wu162.ra2inihelper.lang.IniDocumentationProvider"/>
+        <codeInsight.inlayProvider implementationClass="com.github.wu162.ra2inihelper.lang.IniInlayProvider" language="INI"/>
+
+
+        <lang.foldingBuilder
+                language="INI"
+                implementationClass="com.github.wu162.ra2inihelper.lang.IniFoldingBuilder"/>
+
+        <lang.psiStructureViewFactory
+                language="INI"
+                implementationClass="com.github.wu162.ra2inihelper.lang.structview.IniStructureViewFactory"/>
+
+        <lang.commenter
+                language="INI"
+                implementationClass="com.github.wu162.ra2inihelper.lang.IniCommenter"/>
+
+        <gotoSymbolContributor implementation="com.github.wu162.ra2inihelper.lang.IniSectionJumpContributor"/>
+
+        <backgroundPostStartupActivity
+                id="com.github.wu162.ra2inihelper.lang.LoadConfigActivity"
+                implementation="com.github.wu162.ra2inihelper.lang.LoadConfigActivity"
+                order="last"/>
+
+        <applicationService serviceImplementation="com.github.wu162.ra2inihelper.PluginSettingComponent"/>
+
+        <fileBasedIndex implementation="com.github.wu162.ra2inihelper.indexer.ObjectsIndexer"/>
+
     </extensions>
 
     <applicationListeners>
         <listener class="com.github.wu162.ra2inihelper.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
+
+    <actions>
+        <action id="com.github.wu162.ra2inihelper.action.SetRa2RootPathAction"
+                class="com.github.wu162.ra2inihelper.action.SetRa2RootPathAction"
+                text="设置ra2根目录"
+                description="设置ra2根目录">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>

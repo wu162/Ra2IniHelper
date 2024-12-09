@@ -1,0 +1,43 @@
+{
+  parserClass="com.github.wu162.ra2inihelper.lang.IniParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Ini"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.github.wu162.ra2inihelper.lang.psi"
+  psiImplPackage="com.github.wu162.ra2inihelper.lang.psi.impl"
+
+  elementTypeHolderClass="com.github.wu162.ra2inihelper.lang.IniTypes"
+  elementTypeClass="com.github.wu162.ra2inihelper.lang.psi.IniElementType"
+  tokenTypeClass="com.github.wu162.ra2inihelper.lang.psi.IniTokenType"
+
+  psiImplUtilClass="com.github.wu162.ra2inihelper.lang.util.IniPsiImplUtil"
+
+//    tokens=[
+//        SEPARATOR='='
+//
+//        CRLF = 'regexp:[\r\n]'
+//        space='regexp:\s+'
+//        COMMENT='regexp:;.*'
+//        STRING='regexp:[a-zA-Z0-9!@#$%^&*()_+{}|:"<>?`~;,.\-/]+'
+//      ]
+}
+
+iniFile ::= (sections|COMMENT)*
+
+sections ::= sectionheader item_* {
+mixin="com.github.wu162.ra2inihelper.lang.psi.IniSectionNamedElementImpl"
+implements="com.github.wu162.ra2inihelper.lang.psi.IniSectionNamedElement"
+methods=[getName getNameIdentifier setName getPresentation]
+}
+
+sectionheader ::= LB SECTIONNAME RB
+
+item_ ::= (property|COMMENT|CRLF)
+
+property ::= KEY SEPARATOR VALUE? {
+mixin="com.github.wu162.ra2inihelper.lang.psi.IniPropertyNamedElementImpl"
+implements="com.github.wu162.ra2inihelper.lang.psi.IniPropertyNamedElement"
+methods=[getName getNameIdentifier setName getPresentation]
+}

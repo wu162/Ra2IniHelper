@@ -56,6 +56,8 @@
 
         <fileBasedIndex implementation="com.github.wu162.ra2inihelper.indexer.ObjectsIndexer"/>
 
+<!--        <psi.referenceContributor implementation="com.github.wu162.ra2inihelper.lang.IniReferenceContributor"/>-->
+
     </extensions>
 
     <applicationListeners>

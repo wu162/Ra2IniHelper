@@ -4,6 +4,7 @@ import com.github.wu162.ra2inihelper.indexer.ObjectsIndexer
 import com.github.wu162.ra2inihelper.lang.psi.IniProperty
 import com.github.wu162.ra2inihelper.lang.util.IniPsiImplUtil.getKey
 import com.github.wu162.ra2inihelper.lang.util.IniPsiImplUtil.getParentSectionName
+import com.github.wu162.ra2inihelper.lang.util.IniUtil
 import com.github.wu162.ra2inihelper.ra2Root
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -68,20 +69,23 @@ class IniDocumentationProvider : AbstractDocumentationProvider() {
                     else -> {
                         // 物体的
                         if (objPropDesc.containsKey(keyName)) {
-                            val objectNames = FileBasedIndex.getInstance()
-                                .getValues(
-                                    ObjectsIndexer.ObjectsIndexerName,
-                                    ObjectsIndexer.KEY_OBJECT,
-                                    GlobalSearchScope.allScope(element.project)
-                                )
-                            //check if objectNames contains sectionName
-                            objectNames.forEach {
-                                it.forEach { name ->
-                                    if (name == sectionName) {
-                                        return objPropDesc[keyName]
-                                    }
-                                }
+                            if (IniUtil.isObjectSection(element)) {
+                                return objPropDesc[keyName]
                             }
+//                            val objectNames = FileBasedIndex.getInstance()
+//                                .getValues(
+//                                    ObjectsIndexer.ObjectsIndexerName,
+//                                    ObjectsIndexer.KEY_OBJECT,
+//                                    GlobalSearchScope.allScope(element.project)
+//                                )
+//                            //check if objectNames contains sectionName
+//                            objectNames.forEach {
+//                                it.forEach { name ->
+//                                    if (name == sectionName) {
+//                                        return objPropDesc[keyName]
+//                                    }
+//                                }
+//                            }
                         }
 
                     }

@@ -7,6 +7,9 @@ import com.github.wu162.ra2inihelper.lang.psi.IniSections
 import com.intellij.icons.AllIcons
 import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiReference
+import com.intellij.psi.impl.source.resolve.reference.ReferenceProvidersRegistry
+import com.intellij.psi.tree.IElementType
 import com.intellij.psi.util.childrenOfType
 import com.intellij.psi.util.findParentOfType
 import com.intellij.ui.IconManager
@@ -28,6 +31,16 @@ object IniPsiImplUtil {
     fun IniProperty.getValue(): String? {
         val keyNode = node.findChildByType(IniTypes.VALUE)
         return keyNode?.text
+    }
+
+    @JvmStatic
+    fun IniProperty.getTokenType(): IElementType {
+        return IniTypes.PROPERTY
+    }
+
+    @JvmStatic
+    fun IniProperty.getReferences(): Array<PsiReference> {
+        return ReferenceProvidersRegistry.getReferencesFromProviders(this)
     }
 
     fun IniSections.getSectionName(): String? {

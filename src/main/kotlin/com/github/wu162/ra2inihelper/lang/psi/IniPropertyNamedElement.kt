@@ -4,6 +4,6 @@ import com.intellij.psi.ContributedReferenceHost
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.tree.IElementType
 
-interface IniPropertyNamedElement : PsiNameIdentifierOwner, NavigatableElement, ContributedReferenceHost {
+interface IniPropertyNamedElement : PsiNameIdentifierOwner, NavigatableElement {
     fun getTokenType(): IElementType
 }

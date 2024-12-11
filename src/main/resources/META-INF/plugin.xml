@@ -26,6 +26,10 @@
                 language="INI"
                 implementationClass="com.github.wu162.ra2inihelper.lang.IniSyntaxHighlighterFactory"/>
 
+<!--        <lang.formatter-->
+<!--                language="INI"-->
+<!--                implementationClass="com.github.wu162.ra2inihelper.lang.format.IniFormattingModelBuilder"/>-->
+
         <!--        <documentationProvider implementation="com.github.wu162.ra2inihelper.lang.IniDocumentationProvider"/>-->
         <lang.documentationProvider
                 language="INI"
@@ -50,13 +54,26 @@
         <backgroundPostStartupActivity
                 id="com.github.wu162.ra2inihelper.lang.LoadConfigActivity"
                 implementation="com.github.wu162.ra2inihelper.lang.LoadConfigActivity"
-                order="last"/>
+                order="first"/>
 
         <applicationService serviceImplementation="com.github.wu162.ra2inihelper.PluginSettingComponent"/>
 
-        <fileBasedIndex implementation="com.github.wu162.ra2inihelper.indexer.ObjectsIndexer"/>
+        <fileBasedIndex implementation="com.github.wu162.ra2inihelper.indexer.AssetsIndexer"/>
+
+        <codeInsight.lineMarkerProvider
+                language="INI"
+                implementationClass="com.github.wu162.ra2inihelper.lang.IniLineMarkerProvider"/>
+
+<!--        <projectService-->
+<!--                serviceInterface="com.github.wu162.ra2inihelper.lang.reference.IniReferenceProviderService"-->
+<!--                serviceImplementation="com.github.wu162.ra2inihelper.lang.reference.IniReferenceProviderServiceImpl"-->
+<!--        />-->
 
 <!--        <psi.referenceContributor implementation="com.github.wu162.ra2inihelper.lang.IniReferenceContributor"/>-->
+
+        <completion.contributor
+                language="INI"
+                implementationClass="com.github.wu162.ra2inihelper.lang.IniCompletionContributor"/>
 
     </extensions>
 

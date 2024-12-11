@@ -37,6 +37,7 @@ sectionheader ::= LB SECTIONNAME RB
 item_ ::= (property|COMMENT|CRLF)
 
 property ::= KEY SEPARATOR VALUE? {
+pin=1
 mixin="com.github.wu162.ra2inihelper.lang.psi.IniPropertyNamedElementImpl"
 implements="com.github.wu162.ra2inihelper.lang.psi.IniPropertyNamedElement"
 methods=[getName getNameIdentifier setName getPresentation getTokenType getReferences]

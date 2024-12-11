@@ -12,4 +12,8 @@ public interface IniTokenSets {
 
     TokenSet SECTION_HEADER = TokenSet.create(IniTypes.SECTIONHEADER);
 
+    TokenSet PROPERTY = TokenSet.create(IniTypes.PROPERTY);
+
+    TokenSet ITEM_ = TokenSet.create(IniTypes.ITEM_);
+
 }

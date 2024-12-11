@@ -57,6 +57,7 @@ class IniInlayTypeHintsCollector(editor: Editor) : FactoryInlayHintsCollector(ed
     override fun collect(element: PsiElement, editor: Editor, sink: InlayHintsSink): Boolean {
         if (!element.isValid || element.project.isDefault) return false
         if (element is IniSectionheader) {
+            //TODO 应该使用csf里的
             //TODO 应该检查有没有 UI:Name 有的话看看csf里有没有对应的名字
             val text = element.node.findChildByType(IniTypes.SECTIONNAME)?.text
             if (!text.isNullOrEmpty() && names.containsKey(text)) {

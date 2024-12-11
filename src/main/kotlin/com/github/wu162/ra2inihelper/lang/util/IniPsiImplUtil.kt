@@ -30,7 +30,7 @@ object IniPsiImplUtil {
 
     fun IniProperty.getValue(): String? {
         val keyNode = node.findChildByType(IniTypes.VALUE)
-        return keyNode?.text
+        return keyNode?.text?.trim()
     }
 
     @JvmStatic
